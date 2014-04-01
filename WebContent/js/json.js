@@ -1,24 +1,21 @@
 $(document).ready(
 		function() {
 
-			// Îª»ñ»ñÈ¡jsÖµ×¢²áÊó±êµ¥»÷ÊÂ¼þ
+			// Îªï¿½ï¿½ï¿½È¡jsÖµ×¢ï¿½ï¿½ï¿½ï¿½êµ¥ï¿½ï¿½ï¿½Â¼ï¿½
 
 			$("#getJsData").click(
 					function() {
 
-						$.getJSON("js/test.js", function(data) {
-
-							// Í¨¹ý.²Ù×÷·û¿ÉÒÔ´Ódata.messageÖÐ»ñµÃActionÖÐmessageµÄÖµ
-
-							$("#message").html(
-									"<font color='red'>ÓÃ»§Ãû:" + data.name
-											+ "ÈËÉúÄ¿±ê:" + data.job + "</font>");
-
-						});
+						$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=?", function(data){
+								  $.each(data.items, function(i,item){
+								    $("<img/>").attr("src", item.media.m).appendTo("#images");
+								    if ( i == 3 ) return false;
+								  });
+								});
 
 					});
 
-			// Îª»ñÈ¡µ¥¸öÖµµÄ°´Å¥×¢²áÊó±êµ¥»÷ÊÂ¼þ
+			// Îªï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Öµï¿½Ä°ï¿½Å¥×¢ï¿½ï¿½ï¿½ï¿½êµ¥ï¿½ï¿½ï¿½Â¼ï¿½
 
 			$("#getMessage").click(
 					function() {
@@ -26,7 +23,7 @@ $(document).ready(
 						$.getJSON("jsontest!returnMessage.action", function(
 								data) {
 
-							// Í¨¹ý.²Ù×÷·û¿ÉÒÔ´Ódata.messageÖÐ»ñµÃActionÖÐmessageµÄÖµ
+							// Í¨ï¿½ï¿½.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½data.messageï¿½Ð»ï¿½ï¿½Actionï¿½ï¿½messageï¿½ï¿½Öµ
 
 							$("#message").html(
 									"<font color='red'>" + data.message
@@ -36,7 +33,7 @@ $(document).ready(
 
 					});
 
-			// Îª»ñÈ¡UserInfo¶ÔÏó°´Å¥Ìí¼ÓÊó±êµ¥»÷ÊÂ¼þ
+			// Îªï¿½ï¿½È¡UserInfoï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½êµ¥ï¿½ï¿½ï¿½Â¼ï¿½
 
 			$("#getUserInfo").click(
 					function() {
@@ -44,13 +41,13 @@ $(document).ready(
 						$.getJSON("jsontest!returnUserInfo.action", function(
 								data) {
 
-							// Çå¿ÕÏÔÊ¾²ãÖÐµÄÊý¾Ý
+							// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
 
 							$("#message").html("");
 
-							// ÎªÏÔÊ¾²ãÌí¼Ó»ñÈ¡µ½µÄÊý¾Ý
+							// Îªï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ó»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-							// »ñÈ¡¶ÔÏóµÄÊý¾ÝÓÃdata.userInfo.ÊôÐÔ
+							// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½data.userInfo.ï¿½ï¿½ï¿½ï¿½
 
 							$("#message").append(
 									"<div><font color='red'>UserID:"
@@ -71,20 +68,20 @@ $(document).ready(
 
 					});
 
-			// Îª»ñÈ¡List¶ÔÏó°´Å¥Ìí¼ÓÊó±êµ¥»÷ÊÂ¼þ
+			// Îªï¿½ï¿½È¡Listï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½êµ¥ï¿½ï¿½ï¿½Â¼ï¿½
 
 			$("#getList").click(
 					function() {
 
 						$.getJSON("jsontest!returnList.action", function(data) {
 
-							// Çå¿ÕÏÔÊ¾²ãÖÐµÄÊý¾Ý
+							// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
 
 							$("#message").html("");
 
-							// Ê¹ÓÃjQueryÖÐµÄeach(data,function(){});º¯Êý
+							// Ê¹ï¿½ï¿½jQueryï¿½Ðµï¿½each(data,function(){});ï¿½ï¿½ï¿½ï¿½
 
-							// ´Ódata.userInfosList»ñÈ¡UserInfo¶ÔÏó·ÅÈëvalueÖ®ÖÐ
+							// ï¿½ï¿½data.userInfosListï¿½ï¿½È¡UserInfoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½valueÖ®ï¿½ï¿½
 
 							$.each(data.userInfosList, function(i, value) {
 
@@ -112,22 +109,22 @@ $(document).ready(
 
 					});
 
-			// Îª»ñÈ¡Map¶ÔÏó°´Å¥Ìí¼ÓÊó±êµ¥»÷ÊÂ¼þ
+			// Îªï¿½ï¿½È¡Mapï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½êµ¥ï¿½ï¿½ï¿½Â¼ï¿½
 
 			$("#getMap").click(
 					function() {
 
 						$.getJSON("jsontest!returnMap.action", function(data) {
 
-							// Çå¿ÕÏÔÊ¾²ãÖÐµÄÊý¾Ý
+							// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
 
 							$("#message").html("");
 
-							// Ê¹ÓÃjQueryÖÐµÄeach(data,function(){});º¯Êý
+							// Ê¹ï¿½ï¿½jQueryï¿½Ðµï¿½each(data,function(){});ï¿½ï¿½ï¿½ï¿½
 
-							// ´Ódata.userInfosList»ñÈ¡UserInfo¶ÔÏó·ÅÈëvalueÖ®ÖÐ
+							// ï¿½ï¿½data.userInfosListï¿½ï¿½È¡UserInfoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½valueÖ®ï¿½ï¿½
 
-							// keyÖµÎªMapµÄ¼üÖµ
+							// keyÖµÎªMapï¿½Ä¼ï¿½Öµ
 
 							$.each(data.userInfosMap, function(key, value) {
 
@@ -152,16 +149,16 @@ $(document).ready(
 
 					});
 
-			// Ïò·þÎñÆ÷·¢ËÍ±í´ïÊý¾Ý
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 			$("#regRe").click(
 					function() {
 
-						// °Ñ±íµ¥µÄÊý¾Ý½øÐÐÐòÁÐ»¯
+						// ï¿½Ñ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
 
 						var params = $("form").serialize();
 
-						// Ê¹ÓÃjQueryÖÐµÄ$.ajax({});Ajax·½·¨
+						// Ê¹ï¿½ï¿½jQueryï¿½Ðµï¿½$.ajax({});Ajaxï¿½ï¿½ï¿½ï¿½
 
 						$.ajax({
 
@@ -175,13 +172,13 @@ $(document).ready(
 
 							success : function(data) {
 
-								// Çå¿ÕÏÔÊ¾²ãÖÐµÄÊý¾Ý
+								// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
 
 								$("#message").html("");
 
-								// ÎªÏÔÊ¾²ãÌí¼Ó»ñÈ¡µ½µÄÊý¾Ý
+								// Îªï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ó»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-								// »ñÈ¡¶ÔÏóµÄÊý¾ÝÓÃdata.userInfo.ÊôÐÔ
+								// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½data.userInfo.ï¿½ï¿½ï¿½ï¿½
 
 								$("#message").append(
 										"<div><font color='red'>UserID:"
